@@ -47,5 +47,6 @@ public:
 	cv::Mat color_rendering(cv::Mat& image);
 	cv::Mat boxfilter(cv::Mat& src,cv::Mat& mask);
 	bool image_zero(cv::Mat image1, cv::Mat image2);
+	cv::Mat GetMask(cv::Mat image);
 };
 

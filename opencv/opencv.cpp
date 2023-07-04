@@ -711,3 +711,4 @@ Mat Imageprocess::image_contrast_enhancement(Mat image) {
 	imshow("CLAHE Image", image_clahe);
 	return image_clahe;
 }
+
