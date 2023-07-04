@@ -701,9 +701,10 @@ bool CameraAlgorithm::image_zero(Mat image1, Mat image2) {
 
 
 cv::Mat CameraAlgorithm::GetMask(cv::Mat image) {
-	cvtColor(image, image, COLOR_BGR2GRAY);
 	Mat Mask = Mat::zeros(image.size(), image.type());
-	adaptiveThreshold(image, Mask, 255, THRESH_BINARY_INV, ADAPTIVE_THRESH_GAUSSIAN_C, 5, 10);
-	imshow("Mask", Mask);
+	Mat Mask1 = Mat::zeros(image.size(), image.type());
+	threshold(image, Mask, 80, 255, THRESH_BINARY_INV);
+	threshold(image, Mask1, 10, 255, THRESH_BINARY);
+	bitwise_and(Mask, Mask1, Mask);
 	return Mask;
 }
