@@ -31,7 +31,7 @@ public:
 	cv::Mat boundary_extraction(cv::Mat& image,const int& a, const int& b,bool c);//图像边界提取；
 	cv::Mat RegionGrowSegment(cv::Mat& srcImage, cv::Mat& MaskImage,const int& ch1Thres, const int& ch1LowerBind, const int& ch1UpperBind, const int& ch2Thres);//区域生长；
 
-
+	void VideoOperations(cv::Mat& frame);
 	cv::Mat image_contrast_enhancement(cv::Mat image);//增强图像对比度
 private:
 

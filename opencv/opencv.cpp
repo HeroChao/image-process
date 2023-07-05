@@ -92,13 +92,13 @@ pair<cv::Mat,cv::Mat> Imageprocess::image_segmentation(cv::Mat& image)
 	//cout<<Width<<image.cols<<Height<<image.rows<<endl;
 	cv::Mat crop_L = image(Range(0, image.rows), Range(0, int(image.cols/2)));
 	cv::Mat crop_R = image(Range(0, image.rows), Range(int(image.cols / 2), image.cols));
-	//imshow("切割左图", crop_L);
-	//imshow("切割右图", crop_R);
+	imshow("切割左图", crop_L);
+	imshow("切割右图", crop_R);
 	Image = make_pair(crop_L, crop_R);
 	return Image;
 }
 
-void VideoOperations(cv::Mat& frame)
+void Imageprocess::VideoOperations(cv::Mat& frame)
 {
 	Imageprocess Mg;
 
@@ -106,9 +106,10 @@ void VideoOperations(cv::Mat& frame)
 	pair<cv::Mat, cv::Mat> Image = Mg.image_segmentation(frame);
 	image1 = Image.first;
 	image2 = Image.second;
+	image2 = Mg.image_contrast_enhancement(image2);
 	cv::cvtColor(image1, image1, COLOR_BGR2GRAY);
 	cv::cvtColor(image2, image2, COLOR_BGR2GRAY);
-	//Mg.Sift_detection(image1, image2);
+	Mg.Sift_detection(image1, image2);
 	//Mg.Imageblur(frame);
 	//Mg.feature_detection(image1, image2);
 	//Mg.ORB_demo(500, 0, image1, image2);
@@ -684,7 +685,6 @@ cv::Mat Imageprocess::boundary_extraction(cv::Mat& image,const int& a,const int&
 }
 
 Mat Imageprocess::image_contrast_enhancement(Mat image) {
-	cout << image.channels() << image.size() << endl;
 	Mat clahe_img;
 	cvtColor(image, clahe_img, COLOR_BGR2Lab);
 	vector<cv::Mat> channels(3);
@@ -692,7 +692,7 @@ Mat Imageprocess::image_contrast_enhancement(Mat image) {
 
 	Ptr<cv::CLAHE> clahe = createCLAHE();
 	// 直方图的柱子高度大于计算后的ClipLimit的部分被裁剪掉，然后将其平均分配给整张直方图   
-	clahe->setClipLimit(5.0); // (int)(4.*(8*8)/256)  
+	clahe->setClipLimit(10.0); // (int)(4.*(8*8)/256)  
 	clahe->setTilesGridSize(Size(8, 8)); // 将图像分为8*8块  
 	Mat dst;
 	clahe->apply(channels[0], dst);
@@ -705,10 +705,6 @@ Mat Imageprocess::image_contrast_enhancement(Mat image) {
 
 	Mat image_clahe;
 	cvtColor(clahe_img, image_clahe, COLOR_Lab2BGR);
-	
-	cvtColor(image_clahe, image_clahe, COLOR_BGR2GRAY);
-	cout << image_clahe.channels()<< image_clahe.size() << endl;
-	imshow("CLAHE Image", image_clahe);
 	return image_clahe;
 }
 

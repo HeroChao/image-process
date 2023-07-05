@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	GasDetect gas;
 	IR_VIS iv;
 	GasProcess gp;
-	Mc.GetMask(image);
+	Mg.VideoOperations(image);
 	cv::waitKey(0);
 	destroyAllWindows();
 	return 0;
