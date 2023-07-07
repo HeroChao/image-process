@@ -148,67 +148,74 @@ bool Imageprocess::OpenCameraAndRecord(const std::string& url, cv::Mat& image)
 		//读取帧
 		tempframe = capture.read(frame);
 		capture >> frame;
-		tempframe = frame;
 		framenum++;
+		string name = to_string(framenum);
+		std::pair <cv::Mat, cv::Mat> Image = image_segmentation(frame);
+		cv::Mat image1 = Image.first;
+		cv::Mat image2 = Image.second;
+		imwrite("D:/数据图/可见" + name + ".png", image1);
+		imwrite("D:/数据图/红外" + name + ".png", image2);
+		//tempframe = frame;
+	
 
-		if (framenum == 1)
-		{
-			cv::cvtColor(tempframe, previousframe, COLOR_BGR2GRAY);
-		}
-		else
-		{
-			//Imageprocess Mt;
-			//cv::Mat dst1 = Mt.histogram_enhancement(tempframe);
+		//if (framenum == 1)
+		//{
+		//	cv::cvtColor(tempframe, previousframe, COLOR_BGR2GRAY);
+		//}
+		//else
+		//{
+		//	//Imageprocess Mt;
+		//	//cv::Mat dst1 = Mt.histogram_enhancement(tempframe);
 
-			////dst1 = Mt.imgPreprocess(dst1);
-			////cv::cvtColor(dst1, dst1, COLOR_BGR2GRAY);
-			//std::pair <cv::Mat, cv::Mat> Image = Mt.image_segmentation(dst1);
-			//cv::Mat image1 = Image.first;
-			//cv::Mat image2 = Image.second;
-			//image1 = Mt.imgPreprocess(image1, 3, 3,true);
-			//imshow("图一", image1);
-			//image2 = Mt.imgPreprocess(image2, 1, 1,false);
-			//imshow("图二", image2);
-			////Mt.alignImages(image1, image2);
-			////Mt.Sift_detection(image1, image2);
-			////将tempframe转为单通道灰度图，输出为currentFrame
-			//cv::cvtColor(tempframe, currentframe, COLOR_BGR2GRAY);
-			////pair<cv::Mat, cv::Mat> Image1 = Mt.image_segmentation(previousframe);
-			//////做差求绝对值，输出为currentframe，即差分图像
-			//cv::Mat dst;
-			////absdiff(Image.second, Image1.second,dst);
+		//	////dst1 = Mt.imgPreprocess(dst1);
+		//	////cv::cvtColor(dst1, dst1, COLOR_BGR2GRAY);
+		//	//std::pair <cv::Mat, cv::Mat> Image = Mt.image_segmentation(dst1);
+		//	//cv::Mat image1 = Image.first;
+		//	//cv::Mat image2 = Image.second;
+		//	//image1 = Mt.imgPreprocess(image1, 3, 3,true);
+		//	//imshow("图一", image1);
+		//	//image2 = Mt.imgPreprocess(image2, 1, 1,false);
+		//	//imshow("图二", image2);
+		//	////Mt.alignImages(image1, image2);
+		//	////Mt.Sift_detection(image1, image2);
+		//	////将tempframe转为单通道灰度图，输出为currentFrame
+		//	//cv::cvtColor(tempframe, currentframe, COLOR_BGR2GRAY);
+		//	////pair<cv::Mat, cv::Mat> Image1 = Mt.image_segmentation(previousframe);
+		//	//////做差求绝对值，输出为currentframe，即差分图像
+		//	//cv::Mat dst;
+		//	////absdiff(Image.second, Image1.second,dst);
 
-			////
+		//	////
 
-			//absdiff(currentframe, previousframe, currentframe);
+		//	//absdiff(currentframe, previousframe, currentframe);
 
-			////遍历差分图像中点，将图像信息二值化，大于阈值20，为255，反之则为0，输出为currentframe
-			////threshold(currentframe, currentframe, 20, 255.0, THRESH_BINARY);
+		//	////遍历差分图像中点，将图像信息二值化，大于阈值20，为255，反之则为0，输出为currentframe
+		//	////threshold(currentframe, currentframe, 20, 255.0, THRESH_BINARY);
 
-			//cv::Mat kernel = getStructuringElement(MORPH_ELLIPSE, Size(10, 10));
-			//morphologyEx(currentframe, currentframe, MORPH_OPEN, kernel, Point(-1, -1), 2);
-			////imshow("背景减图后区域", currentframe);
-			////cout << dst.channels() << endl;
-			//// dst = Mt.imgPreprocess(dst);
-			////double a = Mt.Image_rectangle(dst);
+		//	//cv::Mat kernel = getStructuringElement(MORPH_ELLIPSE, Size(10, 10));
+		//	//morphologyEx(currentframe, currentframe, MORPH_OPEN, kernel, Point(-1, -1), 2);
+		//	////imshow("背景减图后区域", currentframe);
+		//	////cout << dst.channels() << endl;
+		//	//// dst = Mt.imgPreprocess(dst);
+		//	////double a = Mt.Image_rectangle(dst);
 
-			//Ptr<BackgroundSubtractorMOG2> Model = createBackgroundSubtractorMOG2();
-			//Model->setHistory(500);
-			//Model->setVarThreshold(16);
-			//Model->setDetectShadows(true);
-			//cv::Mat mogframe;
-			//Model->apply(tempframe, mogframe);
-			////显示图像 
-			//imshow("MOG", mogframe);
-			
-			imshow("当前视频帧", tempframe);
+		//	//Ptr<BackgroundSubtractorMOG2> Model = createBackgroundSubtractorMOG2();
+		//	//Model->setHistory(500);
+		//	//Model->setVarThreshold(16);
+		//	//Model->setDetectShadows(true);
+		//	//cv::Mat mogframe;
+		//	//Model->apply(tempframe, mogframe);
+		//	////显示图像 
+		//	//imshow("MOG", mogframe);
+		//	
+		//	imshow("当前视频帧", tempframe);
 
 
 
-		}
+		//}
 
-		//把当前帧保存作为下一次处理的前一帧 
-		cv::cvtColor(tempframe, previousframe, COLOR_BGR2GRAY);
+		////把当前帧保存作为下一次处理的前一帧 
+		//cv::cvtColor(tempframe, previousframe, COLOR_BGR2GRAY);
 		cv::waitKey(1);
 	}
 

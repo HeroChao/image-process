@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	GasDetect gas;
 	IR_VIS iv;
 	GasProcess gp;
-	Mg.VideoOperations(image);
+	Mg.OpenCameraAndRecord("rtsp://172.20.20.114:8554/test", image);
 	cv::waitKey(0);
 	destroyAllWindows();
 	return 0;
