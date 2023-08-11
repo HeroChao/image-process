@@ -1,0 +1,8 @@
+DistanceThreshold	40
+NumberOfAdoptions	0
+IsContrastEnhanced	0
+BOXFIL	0
+ThresholdPixel	300000
+LowAlarmThreshold	990
+HighAlarmThreshold	200000.0
+ContinuousRenderingFrames	1

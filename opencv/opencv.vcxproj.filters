@@ -38,6 +38,9 @@
     <ClInclude Include="IR_VIS.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="FFmpeg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="opencv.rc">
@@ -46,5 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
+    <Text Include="Parameter.txt">
+      <Filter>头文件</Filter>
+    </Text>
+    <Text Include="numbers.txt" />
   </ItemGroup>
 </Project>

@@ -715,3 +715,22 @@ cv::Mat CameraAlgorithm::GetMask(cv::Mat image) {
 	bitwise_and(Mask, Mask1, Mask);
 	return Mask;
 }
+
+void CameraAlgorithm::logo_display(Mat image, const int flag) {
+	const int logoSize = 120;
+	Mat logo = imread("D:/文件安装包/2.png");
+	Mat LogoImage(logoSize, logoSize, image.type());
+	resize(logo, LogoImage, LogoImage.size());
+	Mat LogoImage_gray;
+	cvtColor(LogoImage, LogoImage_gray, COLOR_BGR2GRAY);
+	Mat LogoImage_mask;
+	threshold(LogoImage_gray, LogoImage_mask, 250, 1, THRESH_BINARY_INV);
+
+	if (flag == 1) {
+		Mat ROI_Logo = image(Rect(200, 200, logoSize, logoSize));
+		Mat dst;
+		addWeighted(ROI_Logo, 0.7, LogoImage, 0.3, 0, dst);
+		dst.copyTo(ROI_Logo, LogoImage_mask);
+	}
+	imshow("logo", image);
+}

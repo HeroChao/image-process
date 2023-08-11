@@ -3,6 +3,7 @@
 #include <opencv2/core/utils/logger.hpp>
 #include <string>
 #include<Imageprocess.h>
+#include<fstream>
 using namespace cv;
 using namespace std;
 
@@ -708,3 +709,54 @@ Mat Imageprocess::image_contrast_enhancement(Mat image) {
 	return image_clahe;
 }
 
+typedef Point3_<uint8_t> Pixel;
+void complicatedThreshold(Pixel& pixel)
+{
+	if (pow(double(pixel.x) / 10, 2.5) > 100)
+	{
+		pixel.x = 255;
+		pixel.y = 255;
+		pixel.z = 255;
+	}
+	else
+	{
+		pixel.x = 0;
+		pixel.y = 0;
+		pixel.z = 0;
+	}
+}
+Mat Imageprocess::TraversePixels(Mat image) {
+	
+	struct Operator
+	{
+		void operator()(Pixel& pixel, const int* postion)const {
+			complicatedThreshold(pixel);
+		}
+	};
+	image.forEach<Pixel>(Operator());
+	return image;
+}
+
+int rendernums = 0;
+bool Imageprocess::RenderingJudgment(Mat image,int renderthre) {
+	if (rendernums < renderthre) {
+		if (countNonZero(image) == image.cols * image.rows) {
+			rendernums = 0;
+			return false;
+		}
+		else {
+			rendernums++;
+			return false;
+		}
+	}
+	else {
+		if (countNonZero(image) == image.cols * image.rows) {
+			rendernums--;
+			return false;
+		}
+		else {
+			rendernums++;
+			return true;
+		}
+	}
+}

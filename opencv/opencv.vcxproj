@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\opencv\build\include\opencv2;D:\opencv\build\include;D:\Program Files %28x86%29\C++.file\opencv\opencv;D:\ffmpeg\ffmpeg-5.1.2-full_build-shared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\opencv\build\x64\vc15\lib;D:\ffmpeg\ffmpeg-5.1.2-full_build-shared\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\opencv\build\include\opencv2;D:\opencv\build\include;D:\Program Files %28x86%29\C++.file\opencv\opencv;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\opencv\build\x64\vc15\lib;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;$(IncludePath)</IncludePath>
@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world460d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world460d.lib;avcodec.lib;avdevice.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -146,6 +146,7 @@
     <ClCompile Include="test_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FFmpeg.h" />
     <ClInclude Include="GasDetect.h" />
     <ClInclude Include="Imageprocess.h" />
     <ClInclude Include="AWB.h" />
@@ -155,6 +156,8 @@
     <ResourceCompile Include="opencv.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="numbers.txt" />
+    <Text Include="Parameter.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

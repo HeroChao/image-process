@@ -33,6 +33,9 @@ public:
 
 	void VideoOperations(cv::Mat& frame);
 	cv::Mat image_contrast_enhancement(cv::Mat image);//增强图像对比度
+	cv::Mat TraversePixels(cv::Mat image);//快速遍历像素点；
+	bool RenderingJudgment(cv::Mat image, int renderthre);//判断是否渲染；
+
 private:
 
 
@@ -48,5 +51,6 @@ public:
 	cv::Mat boxfilter(cv::Mat& src,cv::Mat& mask);
 	bool image_zero(cv::Mat image1, cv::Mat image2);
 	cv::Mat GetMask(cv::Mat image);
+	void logo_display(cv::Mat image, const int flag);
 };
 
