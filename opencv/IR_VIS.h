@@ -17,7 +17,7 @@ mutex IR_VISLock;
 mutex Gaslock;
 class IR_VIS {
 public:
-	void setvideoinput(const string& u, const string& v) {
+	void setvideoinput(const std::string& u, const std::string& v) {
 		//设置红外与可见光视频流输入：红外 u，可见 v
 		url1 = u;
 		url2 = v;
@@ -108,8 +108,8 @@ protected:
 	int ValidHeigth = 1024;
 	int Mode = 0;
 private:
-		string url1 = "rtsp://admin:zhgx1234@192.168.1.123:554/cam/realmonitor?channel=2&subtype=0&unicast=true";
-		string url2 = "rtsp://admin:zhgx1234@192.168.1.123:554/cam/realmonitor?channel=1&subtype=0";
+		std::string url1 = "rtsp://admin:zhgx1234@192.168.1.123:554/cam/realmonitor?channel=2&subtype=0&unicast=true";
+		std::string url2 = "rtsp://admin:zhgx1234@192.168.1.123:554/cam/realmonitor?channel=1&subtype=0";
 
 };
 

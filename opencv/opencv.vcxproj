@@ -24,7 +24,7 @@
     <ProjectGuid>{bc82f457-d53b-46c8-84fd-007c1f6bee86}</ProjectGuid>
     <RootNamespace>opencv</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>opencv</ProjectName>
+    <ProjectName>ZHGX</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,12 +72,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\opencv\build\include\opencv2;D:\opencv\build\include;D:\Program Files %28x86%29\C++.file\opencv\opencv;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\opencv\build\x64\vc15\lib;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\C++library\cuda opencv\include;D:\C++library\cuda opencv\include\opencv2;D:\Program Files %28x86%29\C++.file\ZHGX\opencv;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\C++library\cuda opencv\x64\vc17\lib;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\include;D:\C++library\opencv\build\include;D:\C++library\opencv\build\include\opencv2;D:\Program Files %28x86%29\C++.file\ZHGX\opencv;D:\C++library\mysql-connector-c++-8.1.0-winx64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\C++library\opencv\build\x64\vc15\lib;D:\C++library\ffmpeg\ffmpeg-6.0-full_build-shared\lib;D:\C++library\mysql-connector-c++-8.1.0-winx64\lib64\vs14;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world460d.lib;avcodec.lib;avdevice.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avdevice.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;opencv_480d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -137,13 +137,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avdevice.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;opencv_world460.lib;mysqlcppconn8.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="opencv.cpp" />
-    <ClCompile Include="test_image.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FFmpeg.h" />

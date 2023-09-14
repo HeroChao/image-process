@@ -760,3 +760,4 @@ bool Imageprocess::RenderingJudgment(Mat image,int renderthre) {
 		}
 	}
 }
+
